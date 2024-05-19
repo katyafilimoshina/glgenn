@@ -6,8 +6,8 @@ import math
 from .cliffordalgebra import CliffordAlgebra
 
 class CliffordAlgebraQT(CliffordAlgebra):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, metric):
+        super().__init__(metric)
 
         # Dimensions of the subspaces of quaternion types 0, 1, 2, 3
         self.dim_1 = int(2**(self.dim-2) + 2**(self.dim/2 -1) * math.sin(math.pi * self.dim / 4))
