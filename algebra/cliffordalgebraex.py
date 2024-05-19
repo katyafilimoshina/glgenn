@@ -5,6 +5,7 @@
 import math
 import functools
 import numpy as np
+import torch
 
 from .cliffordalgebra import CliffordAlgebra
 
@@ -41,3 +42,23 @@ class CliffordAlgebraQT(CliffordAlgebra):
                     qt_3 += 1
         
         return permutation
+    
+
+    @functools.cached_property
+    def qt_geometric_product_paths(self):
+        # Sum up the results of multiplications (mod 4): [4, n+1, n+1]
+        qt_results = torch.zeros((4, self.dim + 1, self.dim + 1), dtype=bool)
+        for grade in range(self.dim + 1):
+            qt_results[grade % 4, :, :] += self.geometric_product_paths[grade, :, :]
+
+        # Sum up the rows in multiplication table (mod 4): [4, 4, n+1]
+        qt_sum_rows = torch.zeros((4, 4, self.dim + 1), dtype=bool)
+        for grade in range(self.dim + 1):
+            qt_sum_rows[:, grade % 4, :] += qt_results[:, grade, :]
+
+        # Sum up the columns in multiplication table (mod 4): [4, 4, 4]
+        qt_sum_cols = torch.zeros((4, 4, 4), dtype=bool)
+        for grade in range(self.dim + 1):
+            qt_sum_cols[:, :, grade % 4] += qt_sum_rows[:, :, grade]
+
+        return qt_sum_cols
