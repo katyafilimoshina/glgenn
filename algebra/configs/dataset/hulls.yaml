@@ -1,2 +1,0 @@
-dataset:
-  module: data.hulls.ConvexHullDataset

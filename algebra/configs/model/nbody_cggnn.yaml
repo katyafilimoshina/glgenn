@@ -1,2 +1,0 @@
-model:
-  module: models.nbody_cggnn.NBodyCGGNN

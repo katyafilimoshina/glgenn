@@ -1,2 +1,0 @@
-optimizer:
-  module: torch.optim.Adam
