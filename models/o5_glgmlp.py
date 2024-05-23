@@ -17,7 +17,7 @@ class O5GLGMLP(nn.Module):
         self.algebra = CliffordAlgebraQT((1.0, 1.0, 1.0, 1.0, 1.0,))
 
         self.qtgp = nn.Sequential(
-            QTLinear(self.algebra, 2, 8, subspaces=False),
+            QTLinear(self.algebra, 2, 8),
             QTGeometricProduct(self.algebra, 8),
         )
 
