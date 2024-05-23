@@ -3,19 +3,26 @@ import torch
 from torch import nn
 
 from .qtlinear import QTLinear
+from .qtnorm import QTNormalization
 
 
 class QTGeometricProduct(nn.Module):
     def __init__(
-        self, algebra, features
+        self, algebra, features, normalization_init=0
         ):
         super().__init__()
 
         self.algebra = algebra
         self.features = features
-        self.normalization = nn.Identity()
+        
+        if normalization_init is not None:
+            self.normalization = QTNormalization(
+                algebra, features, normalization_init
+            )
+        else:
+            self.normalization = nn.Identity()
+        
         self.linear_right = QTLinear(algebra, features, features)
-
         self.qt_product_paths = algebra.qt_geometric_product_paths
         self.weight = nn.Parameter(torch.empty(features, self.qt_product_paths.sum()))
 
@@ -45,3 +52,5 @@ class QTGeometricProduct(nn.Module):
         input_right = self.normalization(input_right)
         weight = self._get_weight()
         return torch.einsum("bni, nijk, bnk -> bnj", input, weight, input_right)
+
+
