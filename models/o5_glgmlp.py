@@ -1,10 +1,10 @@
 import torch.nn.functional as F
 from torch import nn
 
-from algebra.cliffordalgebraex import CliffordAlgebraQT
-from engineer.metrics.metrics import Loss, MetricCollection
-from layers.qtgp import QTGeometricProduct
-from layers.qtlinear import QTLinear
+from glgenn.algebra.cliffordalgebraex import CliffordAlgebraQT
+from glgenn.engineer.metrics.metrics import Loss, MetricCollection
+from glgenn.layers.qtgp import QTGeometricProduct
+from glgenn.layers.qtlinear import QTLinear
 
 
 class O5GLGMLP(nn.Module):
