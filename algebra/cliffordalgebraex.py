@@ -19,9 +19,6 @@ class CliffordAlgebraQT(CliffordAlgebra):
         self.dim_0 = int(2**(self.dim-1) - self.dim_2)
         self.dim_3 = int(2**(self.dim-1) - self.dim_1)
 
-        self.qt_to_list = self._qt_to_list()
-        self.qt_to_index = self._qt_to_index()
-
 
     @functools.cached_property
     def weights_permutation(self):
@@ -68,7 +65,7 @@ class CliffordAlgebraQT(CliffordAlgebra):
     
 
     @functools.cached_property
-    def _qt_to_list(self):
+    def qt_to_list(self):
         """
         Get list of 4 lists with ids of basis elements for 4 qt in slices
         """
@@ -89,7 +86,7 @@ class CliffordAlgebraQT(CliffordAlgebra):
 
 
     @functools.cached_property
-    def _qt_to_index(self):
+    def qt_to_index(self):
         """
         Get list of tensors with ids of basis elements for 4 qt 
         """
