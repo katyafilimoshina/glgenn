@@ -19,7 +19,10 @@ class CliffordAlgebraQT(CliffordAlgebra):
         self.dim_0 = int(2**(self.dim-1) - self.dim_2)
         self.dim_3 = int(2**(self.dim-1) - self.dim_1)
 
-    
+        self.qt_to_list = self._qt_to_list()
+        self.qt_to_index = self._qt_to_index()
+
+
     @functools.cached_property
     def weights_permutation(self):
         qt_0, qt_1, qt_2, qt_3 = 0, 0, 0, 0
@@ -62,3 +65,47 @@ class CliffordAlgebraQT(CliffordAlgebra):
             qt_sum_cols[:, :, grade % 4] += qt_sum_rows[:, :, grade]
 
         return qt_sum_cols
+    
+
+    @functools.cached_property
+    def _qt_to_list(self):
+        """
+        Get list of 4 lists with ids of basis elements for 4 qt in slices
+        """
+        return [self.grade_to_slice[::4], self.grade_to_slice[1::4], self.grade_to_slice[2::4], self.grade_to_slice[3::4]]
+
+
+    def get_qt(self, mv: torch.Tensor, qt: int) -> torch.Tensor:
+        """
+        Project a multivector onto a subspaces of fixed qt
+        """
+        qt_list = self.qt_to_list[qt]
+        indices = [(s.start, s.stop) for s in qt_list]
+        new_slices = [slice(start.item(), stop.item()) for start, stop in indices]
+        projection = []
+        for slice_ in new_slices:
+            projection.append(mv[..., slice_])
+        return torch.cat(projection, dim=2)
+
+
+    @functools.cached_property
+    def _qt_to_index(self):
+        """
+        Get list of tensors with ids of basis elements for 4 qt 
+        """
+        result = []
+        for slices in self.qt_to_list:
+            indices = []
+            for s in slices:
+                start = s.start.item()
+                stop = s.stop.item()
+                indices.extend(range(start, stop))
+            result.append(torch.tensor(indices))
+        return result
+
+
+    def norms_qt(self, mv):
+        return [
+                self.norm(self.get_qt(mv, qt), blades=self.qt_to_index[qt])
+                for qt in range(4)
+            ]
