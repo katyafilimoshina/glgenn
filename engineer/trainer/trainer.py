@@ -10,8 +10,7 @@ import torch.distributed as dist
 from torch import nn
 from torch.utils.data import DataLoader
 
-from ..callbacks.checkpoint import Checkpoint
-from ..loggers.loggers import ConsoleLogger
+from .loggers import ConsoleLogger
 
 
 def human_format(num: float):
@@ -135,21 +134,6 @@ class Trainer:
                 logger = WANDBLogger()
             else:
                 logger = ConsoleLogger()
-
-        if any(isinstance(c, Checkpoint) for c in callbacks):
-            assert (
-                checkpoint is None
-            ), f"Checkpoint {checkpoint} is already in callbacks."
-            checkpoint = next(c for c in callbacks if isinstance(c, Checkpoint))
-        elif checkpoint is None and not any(
-            isinstance(c, Checkpoint) for c in callbacks
-        ):
-            checkpoint = Checkpoint("val/loss")
-            callbacks.append(checkpoint)
-        elif isinstance(checkpoint, str):
-            checkpoint = Checkpoint(dir=checkpoint)
-        else:
-            raise ValueError(f"Unknown checkpoint: {checkpoint}.")
 
         if fast_dev_run:
             print("This is a development run. Limiting the number of batches to 1.")
