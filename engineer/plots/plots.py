@@ -102,6 +102,6 @@ def plot_losses_compare(train_losses_list, val_losses_list, model_labels):
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
     plot_loss_c(ax1, steps, train_losses_list, 'Train Loss', model_labels)
-    plot_loss_c(ax2, steps, val_losses_list, 'Test Loss', model_labels, test=True)
+    plot_loss_c(ax2, np.arange(0, len(train_losses_list[0]), val_check_interval), val_losses_list, 'Test Loss', model_labels, test=True)
     plt.tight_layout()
     plt.show()
