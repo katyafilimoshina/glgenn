@@ -340,13 +340,13 @@ class Trainer:
                     t0 = time.time()
                     last_global_step = self.global_step
 
-                    # if self.should_test:
-                    if test_loader is not None:
-                        with torch.no_grad():
-                            self.test_loop(
-                                model, optimizer, test_loader, validation=False
-                            )
-                            self.should_test = False
+                    if self.should_test:
+                        if test_loader is not None:
+                            with torch.no_grad():
+                                self.test_loop(
+                                    model, optimizer, test_loader, validation=False
+                                )
+                                self.should_test = False
 
                 self.global_step += 1
 
