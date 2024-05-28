@@ -37,15 +37,12 @@ class OnSynthetic(object):
         return self.X.shape[0]
 
 
-NUM_TEST = 100
-
-
 class OnDataset:
-    def __init__(self, n, num_samples=1000, batch_size=16):
+    def __init__(self, n, num_train_samples=1000, num_test_samples=100, batch_size=16):
         super().__init__()
-        self.train_dataset = OnSynthetic(d=n, N=num_samples)
-        self.val_dataset = OnSynthetic(d=n, N=NUM_TEST)
-        self.test_dataset = OnSynthetic(d=n, N=NUM_TEST)
+        self.train_dataset = OnSynthetic(d=n, N=num_train_samples)
+        self.val_dataset = OnSynthetic(d=n, N=num_test_samples)
+        self.test_dataset = OnSynthetic(d=n, N=num_test_samples)
 
         self.batch_size = batch_size
 
