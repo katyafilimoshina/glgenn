@@ -7,7 +7,7 @@ TBD
 TBD
 
 ## Code Organization
-* `algebra/`: Contains implementation of quaternion types subspaces and related operations in Clifford algebra.
+* `algebra/`: Contains implementation of quaternion types subspaces in Clifford algebra.
 * `data/`: Contains data loading scripts for experiments.
 * `engineer/`: Contains training, evaluation, and visualization scripts.
 * `experiments/`: Contains experiments on GLGENN.
