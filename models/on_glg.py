@@ -7,7 +7,7 @@ from glgenn.layers.qtgp import QTGeometricProduct
 from glgenn.layers.qtlinear import QTLinear
 
 
-class O10GLGMLP(nn.Module):
+class OnGLGMLP(nn.Module):
     def __init__(
         self,
         n,
