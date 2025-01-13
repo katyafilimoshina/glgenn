@@ -1,4 +1,5 @@
-"""Inspired by https://github.com/pygae/clifford"""
+# Original code from: https://github.com/DavidRuhe/clifford-group-equivariant-neural-networks
+
 import functools
 import itertools
 import operator
