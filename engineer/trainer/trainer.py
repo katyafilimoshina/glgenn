@@ -1,3 +1,5 @@
+# Original code from: https://github.com/DavidRuhe/clifford-group-equivariant-neural-networks
+
 import datetime
 import os
 import subprocess
