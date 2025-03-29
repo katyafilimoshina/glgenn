@@ -190,7 +190,7 @@ class Trainer:
             model.train_metrics.update(**outputs)
 
         if self.global_step % self.print_interval == 0:
-            print(f"Step: {self.global_step} (Training) Loss: {loss:.4f}")
+            print(f"Step: {self.global_step} (Training) Loss: {loss:.6f}")
 
     @torch.no_grad()
     def test_loop(
