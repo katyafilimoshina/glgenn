@@ -23,7 +23,7 @@ class ConsoleLogger:
         for k, v in dict.items():
             if isinstance(v, torch.Tensor):
                 v = v.item()
-            print(f"{k}: {v:.4f}")
+            print(f"{k}: {v:.6f}")
         print()
 
     def log_metrics(self, metrics, step):
