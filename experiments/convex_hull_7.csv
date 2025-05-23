@@ -1,0 +1,17 @@
+dataset,dimension,model,trial,num_samples,num_steps,batch_size,hidden_features,num_layers,val loss,val/s_it,train loss,total params
+ConvexHullDataset,7,GLGENN,1,256,128,128,32,4,"4,0566","2,0417","1,9527",24.1K
+ConvexHullDataset,7,GLGENN,2,256,128,128,32,4,"4,1601","2,0478","2,59",24.1K
+ConvexHullDataset,7,GLGENN,3,256,128,128,32,4,"3,7928","2,0417","2,6351",24.1K
+ConvexHullDataset,7,GLGENN,1,512,256,128,32,4,"3,5067","1,9364","6,2501",24.1K
+ConvexHullDataset,7,GLGENN,2,512,256,128,32,4,"3,9796","1,9456","5,0243",24.1K
+ConvexHullDataset,7,GLGENN,1,1024,256,128,32,4,"3,5302","1,894","2,1455",24.1K
+ConvexHullDataset,7,GLGENN,2,1024,256,128,32,4,"3,1383","1,9304","1,707",24.1K
+ConvexHullDataset,7,GLGENN,3,1024,256,128,32,4,"3,9343","1,9068","1,3035",24.1K
+ConvexHullDataset,7,CGENN,1,256,128,128,32,4,"4,447","2,7963","1,4325",83.7K
+ConvexHullDataset,7,CGENN,2,256,128,128,32,4,"4,5982","2,5886","2,2284",83.7K
+ConvexHullDataset,7,CGENN,3,256,128,128,32,4,"4,4289","2,5446","1,1904",83.7K
+ConvexHullDataset,7,CGENN,1,512,256,128,32,4,"3,81","2,6532","2,9441",83.7K
+ConvexHullDataset,7,CGENN,2,512,256,128,32,4,"3,9049","2,5939","3,5585",83.7K
+ConvexHullDataset,7,CGENN,1,1024,256,128,32,4,"3,3511","2,6672","1,2942",83.7K
+ConvexHullDataset,7,CGENN,2,1024,256,128,32,4,"3,1979","2,6486","0,8117",83.7K
+ConvexHullDataset,7,CGENN,3,1024,256,128,32,4,"4,0735","2,5662","1,3933",83.7K
